@@ -13,9 +13,9 @@ const ImageWithEffects = ({ index }) => {
 		threshold: 0.1,
 		// 3D Transform options for images - stronger effect for testing
 		enable3D: true,
-		maxRotation: 30, // stronger rotation for visibility
-		maxScale: 1.1,
-		minScale: 0.7,
+		maxRotation: 1, // stronger rotation for visibility
+		maxScale: 1.0,
+		minScale: 0.5,
 		rotationAxis: 'x', // X axis for horizontal wheel effect
 		perspective: 1000,
 	});
