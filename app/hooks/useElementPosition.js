@@ -25,7 +25,7 @@ const useElementPosition = ({
 
 	const updatePosition = useCallback(() => {
 		if (!elementRef.current) {
-			console.log("updatePosition: elementRef.current is null");
+			// console.log("updatePosition: elementRef.current is null");
 			return;
 		}
 
@@ -41,13 +41,13 @@ const useElementPosition = ({
 			(elementCenterY - viewportCenterY) / viewportCenterY;
 
 		// Debug: Log position data every time
-		console.log("Position update:", {
-			elementTop: rect.top,
-			elementCenterY,
-			viewportCenterY,
-			distanceFromCenter,
-			normalizedPosition,
-		});
+		// console.log("Position update:", {
+		// 	elementTop: rect.top,
+		// 	elementCenterY,
+		// 	viewportCenterY,
+		// 	distanceFromCenter,
+		// 	normalizedPosition,
+		// });
 
 		// Calculate opacity based on distance from center
 		let newOpacity;
@@ -107,18 +107,18 @@ const useElementPosition = ({
 
 			// Debug logging - moved inside the enable3D block
 			if (newTransform !== transform) {
-				console.log(
-					"New transform:",
-					newTransform,
-					"Distance:",
-					distanceFromCenter,
-					"Rotation:",
-					rotation,
-					"Scale:",
-					scale,
-					"RotationProgress:",
-					rotationProgress
-				);
+				// console.log(
+				// 	"New transform:",
+				// 	newTransform,
+				// 	"Distance:",
+				// 	distanceFromCenter,
+				// 	"Rotation:",
+				// 	rotation,
+				// 	"Scale:",
+				// 	scale,
+				// 	"RotationProgress:",
+				// 	rotationProgress
+				// );
 			}
 		}
 
@@ -145,19 +145,19 @@ const useElementPosition = ({
 
 	useEffect(() => {
 		if (!elementRef.current) {
-			console.log("useEffect: elementRef.current is null, retrying...");
+			// console.log("useEffect: elementRef.current is null, retrying...");
 			return;
 		}
 
-		console.log(
-			"Setting up observers and listeners for element:",
-			elementRef.current
-		);
+		// console.log(
+		// 	"Setting up observers and listeners for element:",
+		// 	elementRef.current
+		// );
 
 		// Intersection Observer for visibility tracking
 		const observer = new IntersectionObserver(
 			([entry]) => {
-				console.log("Intersection Observer triggered:", entry.isIntersecting);
+				// console.log("Intersection Observer triggered:", entry.isIntersecting);
 				setIsVisible(entry.isIntersecting);
 				if (entry.isIntersecting) {
 					updatePosition();
@@ -171,15 +171,15 @@ const useElementPosition = ({
 
 		// Event listeners for position updates
 		const handleScroll = (e) => {
-			console.log("Scroll event triggered");
+			// console.log("Scroll event triggered");
 			throttledUpdate();
 		};
 		const handleWheel = (e) => {
-			console.log("Wheel event triggered");
+			// console.log("Wheel event triggered");
 			throttledUpdate();
 		};
 		const handleResize = (e) => {
-			console.log("Resize event triggered");
+			// console.log("Resize event triggered");
 			throttledUpdate();
 		};
 
@@ -189,14 +189,14 @@ const useElementPosition = ({
 			carouselContainer.addEventListener("scroll", handleScroll, {
 				passive: true,
 			});
-			console.log("Added scroll listener to carousel container");
+			// console.log("Added scroll listener to carousel container");
 		}
 
 		window.addEventListener("wheel", handleWheel, { passive: true });
 		window.addEventListener("resize", handleResize, { passive: true });
 
 		// Initial position calculation
-		console.log("Initial position calculation");
+		// console.log("Initial position calculation");
 		updatePosition();
 
 		return () => {

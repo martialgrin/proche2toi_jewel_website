@@ -1,7 +1,7 @@
 import useElementPosition from './hooks/useElementPosition';
 
 const Number = ({ number, index }) => {
-    const formattedNumber = index < 10 ? "00" + (index + 1) : index < 100 ? "0" + (index + 1) : index + 1;
+    const formattedNumber = number;
     
     // Use the position hook to track opacity and 3D transforms based on screen position
     const { elementRef, style } = useElementPosition({
@@ -22,9 +22,11 @@ const Number = ({ number, index }) => {
         <div 
             ref={elementRef}
             className="number-container" 
-            style={style}
+            // style={style}
         >
+        <p>
             {formattedNumber}
+            </p>
         </div>
     );
 };
