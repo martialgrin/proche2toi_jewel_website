@@ -149,11 +149,7 @@
 		"sold": false,
 		"imageNUM": "030"
 	},
-	{
-		"type": "collier",
-		"sold": false,
-		"imageNUM": "100"
-	},
+
 	{
 		"type": "collier",
 		"sold": false,
@@ -198,5 +194,10 @@
 		"type": "collier",
 		"sold": false,
 		"imageNUM": "109"
+	},
+	{
+		"type": "collier",
+		"sold": false,
+		"imageNUM": "110"
 	}
 ]
