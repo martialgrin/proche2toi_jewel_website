@@ -84,6 +84,7 @@ const ImageWithEffects = ({ index, src, obj, popup }) => {
 					alt={`Slide ${index + 1}`}
 					width={700}
 					height={1000}
+					loading="eager"
 				/>
 			</div>
 		</div>

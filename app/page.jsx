@@ -35,12 +35,13 @@ const videoRef = useRef();
 	}, []);
 
 	return (
+		
 		<div className="h-screen">
 			<Header videoRef={videoRef} />
 
 			<div className="video-container" ref={videoRef}>
 				<video
-					src={isPortrait ? "/Portrait.mp4" : "/Landscape.mp4"}
+					src={isPortrait ? "/Portrait.webm" : "/Landscape.webm"}
 					autoPlay
 					loop
 					muted
