@@ -12,7 +12,7 @@ const Popup = ({ obj, setPopup }) => {
         setFeedbackCopyMessage("Message copié");
         setTimeout(() => {
             setFeedbackCopyMessage("Copier le message");
-        }, 2000);
+        }, 5000);
     }
     
     return (
@@ -93,14 +93,14 @@ je souhaite acheter le bijou n°${obj.imageNUM} au prix de ${
 					>
                         {feedbackCopyMessage}
 					</button>
-					<a
+					{/*<a
 						href="https://www.instagram.com/proche2toi/"
 						target="_blank"
 						rel="noopener noreferrer"
                         className="popup-button-copy-link"
 					>
 						<button className="popup-button-copy">Aller sur instagram</button>
-					</a>
+					</a>*/}
 				</div>
 			</div>
 		</div>

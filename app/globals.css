@@ -174,7 +174,6 @@ body {
 	backdrop-filter: blur(100px);
 	margin: 0.5rem;
 	border-radius: 0.5rem;
-
 	flex-direction: column;
 }
 
@@ -213,7 +212,7 @@ body {
 
 .popup-message-send p {
 	color: #fff;
-	padding: 1rem 3rem;
+	padding: 1rem 1rem;
 }
 
 .popup-container h1 {
@@ -237,8 +236,9 @@ body {
 	color: #fff;
 	z-index: 100;
 	text-transform: uppercase;
-	padding: 0 0.5rem;
+	padding: 0.25rem 0.5rem;
 	margin: 1rem 1rem;
+	margin-bottom: 2rem;
 	/* border: 1px solid #fff;
 	border-radius: 0.2rem; */
 	border-radius: 2rem;
@@ -575,6 +575,10 @@ h1.big {
 	align-items: center;
 	justify-content: center;
 	z-index: -1;
+}
+
+.st0 {
+	fill: #fff;
 }
 
 /* .video-overlay svg {
