@@ -19,12 +19,26 @@ export const metadata: Metadata = {
   authors: [{ name: "ECLATS - PROCHE2TOI" }],
   creator: "ECLATS - PROCHE2TOI",
   publisher: "ECLATS - PROCHE2TOI",
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "any" }
+    ],
+    shortcut: "/favicon.ico",
+  },
   openGraph: {
     title: "ECLATS - PROCHE2TOI",
     description: "« Putain je casse toujours tout. J’en ris, et je sors une collection bijoux. » Bisous. <3",
     type: "website",
     locale: "fr_FR",
     siteName: "ECLATS - PROCHE2TOI",
+    images: [
+      {
+        url: "/favicon.ico",
+        width: 800,
+        height: 600,
+        alt: "ECLATS - PROCHE2TOI Logo",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
@@ -46,10 +60,6 @@ export default function RootLayout({
   return (
     <html lang="fr">
       <head>
-        <link rel="icon" href="/favicon.ico" sizes="any" />
-        <link rel="icon" href="/favicon.ico" type="image/x-icon" />
-        <link rel="shortcut icon" href="/favicon.ico" />
-        <link rel="apple-touch-icon" href="/favicon.ico" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

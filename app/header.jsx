@@ -17,15 +17,16 @@ export default function Header({ videoRef }) {
 			setScrollPosition(position);
 			// console.log("Carousel scroll position:", position, window.innerHeight);
 
-			if (videoRef){
+			if (videoRef) {
 				if (position > window.innerHeight * 1.5) {
 					videoRef.current.style.opacity = "0";
 				} else {
 					videoRef.current.style.opacity = "1";
 				}
-            }
+			}
 
 			let size = mapClamped(position, 0, window.innerHeight, 50, 10);
+            let width = mapClamped(position,0, window.innerHeight, 70,10)
 			let padding = mapClamped(position, 0, window.innerHeight, 0.5, 1);
 			let paddingLeft = mapClamped(position, 0, window.innerHeight, 4.5, 9);
 			let paddingRight = mapClamped(position, 0, window.innerHeight, 0.5, 1);
@@ -43,7 +44,7 @@ export default function Header({ videoRef }) {
 			logo.current.style.paddingRight = `clamp(${size / 100}rem, 3rem, 6rem)`;
 			logo.current.style.borderRadius = `clamp(${size / 5}rem, 1rem, 10rem)`;
 			logo.current.style.marginTop = `${marginTop}px`;
-			logo.current.style.width = `clamp(${size}vw, 150px, 3000px)`;
+			logo.current.style.width = `clamp(${width}vw, 150px, 3000px)`;
 		}
 	};
 
@@ -77,6 +78,18 @@ export default function Header({ videoRef }) {
 		};
 	}, []);
 
+	function handleClick() {
+		console.log("hello", );
+		const carouselContainer = document.querySelector(".carousel-container");
+		if (carouselContainer) {
+			if (carouselContainer.scrollTop === 0) {
+				carouselContainer.scrollTo({ top: window.innerHeight, behavior: "smooth" });
+			} else {
+				carouselContainer.scrollTo({ top: 0, behavior: "smooth" });
+			}
+		}
+	}
+
 	return (
 		<header className="header">
 			{/* <div className="header-content">
@@ -84,7 +97,12 @@ export default function Header({ videoRef }) {
             <h1>INFO</h1>
             </div> */}
 			<div className="header-content">
-				<div className="logo-container" ref={logo}>
+				<div
+					className="logo-container"
+					ref={logo}
+					onClick={handleClick}
+					style={{ cursor: "pointer" }}
+				>
 					<svg
 						width="1019"
 						height="356"

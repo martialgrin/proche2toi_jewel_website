@@ -2,10 +2,12 @@ import { useState } from "react";
 export const Commander = ({obj, callback}) => {
 
 
+const [sold, setSold] = useState(obj.sold);
+const className = sold ? "commander-container sold" : "commander-container";
 const [content, setContent] = useState("Commander");
     const handleCommander = (e) => {
         if(content === "Commander") {
-            setContent("fermer");
+            setContent("Commander");
         } else {
             setContent("Commander");
         }
@@ -14,10 +16,13 @@ const [content, setContent] = useState("Commander");
 
     }
 	return (
-        <div className="commander-container">
-		<button onClick={(e) => handleCommander(e)}>
+        <div className={className} onClick={(e) => handleCommander(e)} disabled={obj.sold}>
+        {sold && <p>Vendu</p>}
+        {!obj.sold && (
+		<button>
 				<p>{content}</p>
 			</button>
+        )}
 		</div>
 	);
 };

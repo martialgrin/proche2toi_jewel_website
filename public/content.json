@@ -167,7 +167,7 @@
 	},
 	{
 		"type": "collier",
-		"sold": false,
+		"sold": true,
 		"imageNUM": "105"
 	},
 	{
@@ -192,7 +192,7 @@
 	},
 	{
 		"type": "collier",
-		"sold": false,
+		"sold": true,
 		"imageNUM": "110"
 	}
 ]
