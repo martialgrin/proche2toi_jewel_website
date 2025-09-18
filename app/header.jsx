@@ -4,11 +4,13 @@ import { mapClamped } from "./utils.js";
 
 export default function Header({ videoRef, setFilter, filter }) {
 	const [scrollPosition, setScrollPosition] = useState(0);
+	const [isReady, setIsReady] = useState(false);
 
 	const logo = useRef();
 	const container = useRef();
 	const color = "#fff";
 	const logoType = useRef();
+    const filterRef = useRef();
 
 	const handleScroll = (e) => {
 		// Get the carousel container's scroll position instead of window
@@ -33,6 +35,8 @@ export default function Header({ videoRef, setFilter, filter }) {
 			let paddingRight = mapClamped(position, 0, window.innerHeight, 0.5, 1);
 			let borderRadius = mapClamped(position, 0, window.innerHeight, 1, 10);
 			let logoTypeOpacity = mapClamped(position, 0, window.innerHeight, 1, 0);
+            			let filterOpacity = mapClamped(position, 0, window.innerHeight, 0, 1);
+
 
 			let marginTop = mapClamped(
 				position,
@@ -48,10 +52,23 @@ export default function Header({ videoRef, setFilter, filter }) {
 			logo.current.style.marginTop = `${marginTop}px`;
 			logo.current.style.width = `clamp(${width}vw, 150px, 3000px)`;
 			logoType.current.style.opacity = logoTypeOpacity;
+            filterRef.current.style.opacity = filterOpacity;
+
 		}
 	};
 
 	useEffect(() => {
+		// Small timeout to ensure refs are ready
+		const timer = setTimeout(() => {
+			setIsReady(true);
+		}, 50);
+
+		return () => clearTimeout(timer);
+	}, []);
+
+	useEffect(() => {
+		if (!isReady) return;
+
 		// Listen to scroll events on the carousel container, not the window
 		const carouselContainer = document.querySelector(".carousel-container");
 
@@ -79,7 +96,7 @@ export default function Header({ videoRef, setFilter, filter }) {
 			}
 			window.removeEventListener("wheel", handleWheel);
 		};
-	}, []);
+	}, [isReady]);
 
 	function handleClick() {
 		console.log("hello");
@@ -117,7 +134,7 @@ export default function Header({ videoRef, setFilter, filter }) {
 		<header className="header">
 			
 			{/* Pill buttons for filter */}
-			<div className="filter-pills">
+			<div className={`filter-pills ${isReady ? 'ready' : ''}`} ref={filterRef}>
 				<button 
 					onClick={() => handleFilterChange("all")} 
 					className={`pill-button ${filter === "all" ? "active" : ""}`}

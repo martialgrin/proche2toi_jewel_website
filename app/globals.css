@@ -268,6 +268,19 @@ header {
 header .logo-container {
 	cursor: pointer;
 	pointer-events: auto;
+	/* Initial styles to prevent layout shifts */
+	padding: clamp(3rem, 1rem, 2rem);
+	padding-left: clamp(3rem, 3rem, 6rem);
+	padding-right: clamp(3rem, 3rem, 6rem);
+	border-radius: clamp(1rem, 1rem, 10rem);
+	width: clamp(70vw, 150px, 3000px);
+	transition: all 0.1s ease;
+}
+
+/* Initial opacity for logo text to prevent flash */
+header .logo-container svg g {
+	opacity: 1;
+	transition: opacity 0.1s ease;
 }
 
 header .filter-button {
@@ -285,6 +298,12 @@ header .filter-button {
 	gap: 0.5rem;
 	z-index: 1000;
 	pointer-events: auto;
+	opacity: 0;
+	transition: opacity 0.1s ease;
+}
+
+.filter-pills.ready {
+	opacity: 1;
 }
 
 .pill-button {
