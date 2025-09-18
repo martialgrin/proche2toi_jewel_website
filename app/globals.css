@@ -412,6 +412,7 @@ h1.big {
 	width: 100%;
 	border-radius: 10%;
 	background-color: #000;
+	position: relative;
 	/* Force hardware acceleration for 3D transforms */
 	/* will-change: transform;
 	-webkit-will-change: transform;

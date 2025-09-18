@@ -43,12 +43,13 @@ const ImageWithEffects = ({ index, src, obj, popup, setPopup }) => {
 
 	return (
 		<div ref={elementRef} className="embla__slide__number">
-                        {popup && <Popup obj={obj} setPopup={setPopup} />}
 
 			<div 
 			ref={imageContainerRef} 
 			className={`image-container ${getAnimationClass(index)} ${popup ? 'popup-active' : ''}`}
 		>
+                                {popup && <Popup obj={obj} setPopup={setPopup} />}
+
 				<Image
 					src={`/${src}.png`}
 					alt={`Slide ${index + 1}`}
