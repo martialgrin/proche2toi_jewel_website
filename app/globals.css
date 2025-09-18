@@ -169,12 +169,16 @@ body {
 .popup-message-send {
 	height: auto;
 	display: flex;
-	background-color: #000;
-	color: #fff;
+	/* background-color: rgba(0, 0, 0, 0.1); */
+
+	backdrop-filter: blur(100px);
 	backdrop-filter: blur(100px);
 	margin: 0.5rem;
+	padding: 1rem;
+	line-height: 120%;
 	border-radius: 0.5rem;
 	flex-direction: column;
+	text-align: center;
 }
 
 .popup-button-copy {
@@ -211,7 +215,7 @@ body {
 }
 
 .popup-message-send p {
-	color: #fff;
+	color: #a3a3a3;
 	padding: 1rem 1rem;
 }
 
@@ -297,6 +301,7 @@ header .filter-button {
 	display: flex;
 	gap: 0.5rem;
 	z-index: 1000;
+
 	pointer-events: auto;
 	opacity: 0;
 	transition: opacity 0.1s ease;
