@@ -2,13 +2,13 @@ import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { mapClamped } from "./utils.js";
 
-export default function Header({ videoRef }) {
+export default function Header({ videoRef, setFilter, filter }) {
 	const [scrollPosition, setScrollPosition] = useState(0);
 
 	const logo = useRef();
 	const container = useRef();
 	const color = "#fff";
-    const logoType = useRef()
+	const logoType = useRef();
 
 	const handleScroll = (e) => {
 		// Get the carousel container's scroll position instead of window
@@ -32,7 +32,7 @@ export default function Header({ videoRef }) {
 			let paddingLeft = mapClamped(position, 0, window.innerHeight, 4.5, 9);
 			let paddingRight = mapClamped(position, 0, window.innerHeight, 0.5, 1);
 			let borderRadius = mapClamped(position, 0, window.innerHeight, 1, 10);
-            let logoTypeOpacity = mapClamped(position, 0, window.innerHeight, 1, 0);
+			let logoTypeOpacity = mapClamped(position, 0, window.innerHeight, 1, 0);
 
 			let marginTop = mapClamped(
 				position,
@@ -47,7 +47,7 @@ export default function Header({ videoRef }) {
 			logo.current.style.borderRadius = `clamp(${size / 5}rem, 1rem, 10rem)`;
 			logo.current.style.marginTop = `${marginTop}px`;
 			logo.current.style.width = `clamp(${width}vw, 150px, 3000px)`;
-            logoType.current.style.opacity = logoTypeOpacity;
+			logoType.current.style.opacity = logoTypeOpacity;
 		}
 	};
 
@@ -96,12 +96,48 @@ export default function Header({ videoRef }) {
 		}
 	}
 
+	// Function to scroll to second slide
+	function scrollToSecondSlide() {
+		const carouselContainer = document.querySelector(".carousel-container");
+		if (carouselContainer) {
+			carouselContainer.scrollTo({
+				top: window.innerHeight,
+				behavior: "smooth",
+			});
+		}
+	}
+
+	// Handle filter change and scroll to second slide
+	function handleFilterChange(filterType) {
+		setFilter(filterType);
+		scrollToSecondSlide();
+	}
+
 	return (
 		<header className="header">
-			{/* <div className="header-content">
-			<h1>PROCHE2TOI</h1>
-            <h1>INFO</h1>
-            </div> */}
+			
+			{/* Pill buttons for filter */}
+			<div className="filter-pills">
+				<button 
+					onClick={() => handleFilterChange("all")} 
+					className={`pill-button ${filter === "all" ? "active" : ""}`}
+				>
+					Tout
+				</button>
+				<button 
+					onClick={() => handleFilterChange("collier")} 
+					className={`pill-button ${filter === "collier" ? "active" : ""}`}
+				>
+					Collier
+				</button>
+				<button 
+					onClick={() => handleFilterChange("boucle")} 
+					className={`pill-button ${filter === "boucle" ? "active" : ""}`}
+				>
+					Boucle
+				</button>
+			</div>
+
 			<div className="header-content">
 				<div
 					className="logo-container"
@@ -148,56 +184,56 @@ export default function Header({ videoRef }) {
 							className="st0"
 							d="M21.7,23.7c-1-.5-2.1-1.4-1.9-2.6,1,.5,2.1,1.4,1.9,2.6Z"
 						/>
-						<g className="p2t" ref={logoType}>
+						<g ref={logoType}>
 							<path
 								className="st0"
-								d="M754.6,386.3c0,5.2-4.2,6.5-8.9,6.5h-3.1v7.2h-4.1v-20.6h7c4.2,0,9,.6,9,6.8ZM742.6,389.7h3.3c2.5,0,4.5-.6,4.5-3.3s-2.6-3.7-4.8-3.7h-3.1v7Z"
+								d="M690.4,379.6c0,7.7-6.2,9.6-13.2,9.6h-4.6v10.7h-6v-30.3h10.4c6.2,0,13.3.9,13.3,10ZM672.7,384.6h4.9c3.7,0,6.6-.9,6.6-4.9s-3.8-5.4-7.1-5.4h-4.5v10.3Z"
 							/>
 							<path
 								className="st0"
-								d="M764.5,379.5l7.7,20.6h-4.4l-1.4-4.2h-8l-1.4,4.2h-4.1l7.7-20.6h4.1ZM765.1,392.6l-2.8-8.1-2.8,8.1h5.7Z"
+								d="M704.9,369.6l11.3,30.3h-6.5l-2.1-6.1h-11.8l-2.1,6.1h-6.1l11.3-30.3h6ZM705.9,388.9l-4.2-12-4.2,12h8.4Z"
 							/>
 							<path
 								className="st0"
-								d="M778,392v8.1h-4.1v-20.6h6.7c6.8,0,9.4,1.9,9.4,6.2s-1.2,4.3-3.7,5.4l4.6,8.9h-4.5l-4.1-8.1h-4.3ZM778,388.9h3.3c3.1,0,4.5-1.1,4.5-3.1s-2-3.1-4.7-3.1h-3.1v6.2Z"
+								d="M724.9,388v11.9h-6v-30.3h9.9c10,0,13.8,2.8,13.8,9.2s-1.7,6.4-5.5,8l6.7,13.1h-6.6l-6-11.9h-6.4ZM724.9,383.4h4.9c4.6,0,6.7-1.6,6.7-4.6s-2.9-4.6-7-4.6h-4.6v9.1Z"
 							/>
 							<path
 								className="st0"
-								d="M815.6,386.3c0,5.2-4.2,6.5-8.9,6.5h-3.1v7.2h-4.1v-20.6h7c4.2,0,9,.6,9,6.8ZM803.6,389.7h3.3c2.5,0,4.5-.6,4.5-3.3s-2.6-3.7-4.8-3.7h-3.1v7Z"
+								d="M780.4,379.6c0,7.7-6.2,9.6-13.2,9.6h-4.6v10.7h-6v-30.3h10.4c6.2,0,13.3.9,13.3,10ZM762.6,384.6h4.9c3.7,0,6.6-.9,6.6-4.9s-3.8-5.4-7.1-5.4h-4.5v10.3Z"
 							/>
 							<path
 								className="st0"
-								d="M821.7,392v8.1h-4.1v-20.6h6.7c6.8,0,9.4,1.9,9.4,6.2s-1.2,4.3-3.7,5.4l4.6,8.9h-4.5l-4.1-8.1h-4.3ZM821.7,388.9h3.3c3.1,0,4.5-1.1,4.5-3.1s-2-3.1-4.7-3.1h-3.1v6.2Z"
+								d="M789.3,388v11.9h-6v-30.3h9.9c10,0,13.8,2.8,13.8,9.2s-1.7,6.4-5.5,8l6.7,13.1h-6.6l-6-11.9h-6.4ZM789.3,383.4h4.9c4.6,0,6.7-1.6,6.7-4.6s-2.9-4.6-7-4.6h-4.6v9.1Z"
 							/>
 							<path
 								className="st0"
-								d="M835.9,389.8c0-6.4,3.9-10.6,10.1-10.6s10.1,4.3,10.1,10.6-3.9,10.7-10.1,10.7-10.1-4.3-10.1-10.7ZM851.8,389.8c0-4.8-2.7-7.4-5.9-7.4s-5.9,2.6-5.9,7.4,2.7,7.4,5.9,7.4,5.9-2.6,5.9-7.4Z"
+								d="M810.2,384.7c0-9.4,5.8-15.7,14.8-15.7s14.8,6.3,14.8,15.7-5.8,15.7-14.8,15.7-14.8-6.3-14.8-15.7ZM833.7,384.7c0-7.1-3.9-10.9-8.7-10.9s-8.7,3.8-8.7,10.9,3.9,11,8.7,11,8.7-3.8,8.7-11Z"
 							/>
 							<path
 								className="st0"
-								d="M868.1,400.5c-6.1,0-9.6-4.2-9.6-10.7s3.7-10.5,9.7-10.5,8.1,2.8,8.8,7h-3.9c-.8-2.9-2.7-3.8-5-3.8s-5.5,2.6-5.5,7.3,2.4,7.5,5.4,7.5,4.5-1.1,5.1-3.9h3.9c-.5,4.1-4,7.1-8.9,7.1Z"
+								d="M857.6,400.5c-9,0-14.2-6.2-14.2-15.8s5.5-15.6,14.3-15.6,12,4.1,13,10.4h-5.7c-1.1-4.2-4-5.6-7.3-5.6s-8.1,3.8-8.1,10.8,3.5,11.1,7.9,11.1,6.6-1.6,7.5-5.7h5.7c-.8,6.1-5.9,10.5-13.1,10.5Z"
 							/>
 							<path
 								className="st0"
-								d="M896.9,400.1h-4.1v-8.9h-9.2v8.9h-4.1v-20.6h4.1v8.4h9.2v-8.4h4.1v20.6Z"
+								d="M900.1,399.9h-6v-13.1h-13.6v13.1h-6v-30.3h6v12.4h13.6v-12.4h6v30.3Z"
 							/>
 							<path
 								className="st0"
-								d="M915.5,379.5v3.3h-10.9v5.1h10.3v3.3h-10.3v5.6h10.9v3.3h-15v-20.6h15Z"
+								d="M927.6,369.6v4.8h-16.1v7.5h15.2v4.8h-15.2v8.2h16.1v4.8h-22.1v-30.3h22.1Z"
 							/>
 							<path
 								className="st0"
-								d="M921.4,396.8h10.5v3.3h-15.1v-3.2c6.6-5.3,10.7-8.8,10.7-12s-1.1-2.8-3-2.8-3.5,1-3.5,4.1h-3.8c0-4.3,2.9-7,7.5-7s6.7,2,6.7,5.5-3.7,7.9-10.1,12.1Z"
+								d="M936.3,395.1h15.5v4.8h-22.3v-4.7c9.7-7.9,15.8-12.9,15.8-17.7s-1.7-4.2-4.5-4.2-5.1,1.5-5.1,6.1h-5.6c0-6.3,4.3-10.3,11.1-10.3s9.9,2.9,9.9,8.2-5.5,11.6-14.8,17.8Z"
 							/>
 							<path
 								className="st0"
-								d="M932.7,382.8v-3.3h16.7v3.3h-6.4v17.3h-4.1v-17.3h-6.3Z"
+								d="M953,374.5v-4.8h24.7v4.8h-9.4v25.5h-6v-25.5h-9.3Z"
 							/>
 							<path
 								className="st0"
-								d="M949.5,389.8c0-6.4,3.9-10.6,10.1-10.6s10.1,4.3,10.1,10.6-3.9,10.7-10.1,10.7-10.1-4.3-10.1-10.7ZM965.4,389.8c0-4.8-2.7-7.4-5.9-7.4s-5.9,2.6-5.9,7.4,2.7,7.4,5.9,7.4,5.9-2.6,5.9-7.4Z"
+								d="M977.7,384.7c0-9.4,5.8-15.7,14.8-15.7s14.8,6.3,14.8,15.7-5.8,15.7-14.8,15.7-14.8-6.3-14.8-15.7ZM1001.2,384.7c0-7.1-3.9-10.9-8.7-10.9s-8.7,3.8-8.7,10.9,3.9,11,8.7,11,8.7-3.8,8.7-11Z"
 							/>
-							<path className="st0" d="M972.5,400.1v-20.6h4.1v20.6h-4.1Z" />
+							<path className="st0" d="M1011.6,399.9v-30.3h6v30.3h-6Z" />
 						</g>
 					</svg>
 				</div>

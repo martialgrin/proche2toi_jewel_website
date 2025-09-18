@@ -270,6 +270,52 @@ header .logo-container {
 	pointer-events: auto;
 }
 
+header .filter-button {
+	cursor: pointer;
+	pointer-events: auto;
+}
+
+/* Pill buttons styles */
+.filter-pills {
+	position: absolute;
+	top: 6rem;
+	left: 50%;
+	transform: translateX(-50%);
+	display: flex;
+	gap: 0.5rem;
+	z-index: 1000;
+	pointer-events: auto;
+}
+
+.pill-button {
+	background: rgba(255, 255, 255, 0.1);
+	border: 1px solid rgba(255, 255, 255, 0.2);
+	color: white;
+	padding: 0.25rem 1rem;
+	border-radius: 25px;
+	cursor: pointer;
+	font-family: "Suisse", sans-serif;
+	font-size: 0.7rem;
+	font-weight: 400;
+	transition: all 0.3s ease;
+	backdrop-filter: blur(10px);
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+}
+
+.pill-button:hover {
+	background: rgba(255, 255, 255, 0.2);
+	border-color: rgba(255, 255, 255, 0.4);
+	transform: translateY(-2px);
+}
+
+.pill-button.active {
+	background: white;
+	color: black;
+	border-color: white;
+	font-weight: 500;
+}
+
 .header-content {
 	color: #000;
 	display: flex;

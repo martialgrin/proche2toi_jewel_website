@@ -16,7 +16,7 @@ const [content, setContent] = useState("Commander");
 
     }
 	return (
-        <div className={className} onClick={(e) => handleCommander(e)} disabled={obj.sold}>
+        <div className={className + " pill-button"} onClick={(e) => handleCommander(e)} disabled={obj.sold}>
         {sold && <p>Vendu</p>}
         {!obj.sold && (
 		<button>

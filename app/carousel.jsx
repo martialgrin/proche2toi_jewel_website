@@ -79,7 +79,13 @@ const SlideContent = ({ obj, index }) => {
 	);
 };
 
-const EmblaCarousel = (props) => {
+    const EmblaCarousel = (props) => {
+        // Filter slides based on the filter prop
+        const filteredSlides = props.filter === "all" 
+            ? props.slides 
+            : props.slides.filter(slide => slide.type === props.filter);
+
+        
 	// Note: Wheel and scroll tracking is now handled by individual Number components
 	// using the useElementPosition hook for better performance and cleaner separation of concerns
 	return (
@@ -87,15 +93,15 @@ const EmblaCarousel = (props) => {
 			<div className="scroll-container">
 				<div className="embla__slide embla__slide--first"></div>
 
-				{props.slides.map((obj, index) => (
+				{filteredSlides.map((obj, index) => (
 					<div
 						className={`embla__slide ${
 							index === 0 ? "embla__slide--second" : ""
 						}`}
-                        style={{zIndex: props.slides.length - index}}
+                        style={{zIndex: filteredSlides.length - index}}
 						key={index}
 					>
-						<SlideContent obj={obj} index={index} />
+						<SlideContent obj={obj} index={index}  />
 					</div>
 				))}
 			</div>
