@@ -92,6 +92,7 @@ const EmblaCarousel = (props) => {
 						className={`embla__slide ${
 							index === 0 ? "embla__slide--second" : ""
 						}`}
+                        style={{zIndex: props.slides.length - index}}
 						key={index}
 					>
 						<SlideContent obj={obj} index={index} />
