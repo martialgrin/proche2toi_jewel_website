@@ -1,7 +1,17 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  images: {
+    formats: ['image/webp', 'image/avif'],
+    minimumCacheTTL: 60,
+  },
+  experimental: {
+    optimizePackageImports: ['embla-carousel-react']
+  },
+  // Performance optimizations for Safari iOS
+  poweredByHeader: false,
+  compress: true,
+  swcMinify: true,
 };
 
 export default nextConfig;

@@ -47,7 +47,7 @@ const videoRef = useRef();
 					loop
 					muted
 					playsInline
-					preload="auto"
+					preload="metadata"
 					key={isPortrait ? "portrait" : "landscape"}
 				>
 					<source src={isPortrait ? "/Portrait.webm" : "/Landscape.webm"} type="video/webm" />

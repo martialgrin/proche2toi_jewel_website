@@ -8,17 +8,24 @@ import Commander from "./Commander";
 
 // Image component with 3D effects and floating animation
 const ImageWithEffects = ({ index, src, obj, popup, setPopup }) => {
+	// Detect mobile/Safari iOS to disable intensive animations
+	const isMobile = typeof window !== 'undefined' && (
+		window.innerWidth < 768 || 
+		/iPad|iPhone|iPod/.test(navigator.userAgent) ||
+		/Safari/.test(navigator.userAgent)
+	);
+
 	const { elementRef, style } = useElementPosition({
 		fadeRange: 250,
 		minOpacity: 0.3,
 		maxOpacity: 1.0,
 		threshold: 0.1,
-		// 3D Transform options for images - stronger effect for testing
-		enable3D: true,
-		maxRotation: 1, // stronger rotation for visibility
+		// Disable 3D transforms on mobile/Safari iOS to prevent crashes
+		enable3D: !isMobile,
+		maxRotation: isMobile ? 0 : 1,
 		maxScale: 1.0,
-		minScale: 0.5,
-		rotationAxis: "x", // X axis for horizontal wheel effect
+		minScale: isMobile ? 1.0 : 0.5, // No scaling on mobile
+		rotationAxis: "x",
 		perspective: 1000,
 	});
 
@@ -47,7 +54,8 @@ const ImageWithEffects = ({ index, src, obj, popup, setPopup }) => {
 					alt={`Slide ${index + 1}`}
 					width={700}
 					height={1000}
-					loading="eager"
+					loading={"eager"}
+					priority={index < 3}
 				/>
 			</div>
 		</div>

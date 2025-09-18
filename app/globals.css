@@ -178,7 +178,7 @@ body {
 	line-height: 120%;
 	border-radius: 0.5rem;
 	flex-direction: column;
-	text-align: center;
+	text-align: left;
 }
 
 .popup-button-copy {
@@ -413,10 +413,10 @@ h1.big {
 	border-radius: 10%;
 	background-color: #000;
 	/* Force hardware acceleration for 3D transforms */
-	will-change: transform;
+	/* will-change: transform;
 	-webkit-will-change: transform;
 	transform-style: preserve-3d;
-	-webkit-transform-style: preserve-3d;
+	-webkit-transform-style: preserve-3d; */
 
 	/** Ajoute un effet de flottement doux */
 }
@@ -518,7 +518,7 @@ h1.big {
 	}
 }
 
-/* Animation classes for different indices */
+/* Animation classes for different indices - Disabled on mobile for Safari iOS compatibility */
 .float-animation-0 {
 	animation: float-0 4s ease-in-out infinite;
 	animation-delay: 0s;
@@ -552,6 +552,34 @@ h1.big {
 .float-animation-6 {
 	animation: float-6 5.5s ease-in-out infinite;
 	animation-delay: 3s;
+}
+
+/* Disable all animations on mobile devices and Safari iOS to prevent crashes */
+@media (max-width: 768px), (-webkit-min-device-pixel-ratio: 2) {
+	.float-animation-0,
+	.float-animation-1,
+	.float-animation-2,
+	.float-animation-3,
+	.float-animation-4,
+	.float-animation-5,
+	.float-animation-6,
+	.float-animation-7,
+	.float-animation-8,
+	.float-animation-9,
+	.float-animation-10,
+	.float-animation-11,
+	.float-animation-12,
+	.float-animation-13,
+	.float-animation-14,
+	.float-animation-15,
+	.float-animation-16,
+	.float-animation-17,
+	.float-animation-18,
+	.float-animation-19,
+	.float-animation-20 {
+		animation: none !important;
+		transform: none !important;
+	}
 }
 
 /* For indices beyond 6, we cycle through the animations */
