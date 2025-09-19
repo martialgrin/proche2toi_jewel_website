@@ -90,9 +90,14 @@ const SlideContent = ({ obj, index }) => {
 
     const EmblaCarousel = (props) => {
         // Filter slides based on the filter prop
-        const filteredSlides = props.filter === "all" 
+        let filteredSlides = props.filter === "all" 
             ? props.slides 
             : props.slides.filter(slide => slide.type === props.filter);
+
+	 filteredSlides = [...filteredSlides].sort((a, b) => {
+		if (a.sold === b.sold) return 0;
+		return a.sold ? 1 : -1;
+	});
 
         
 	// Note: Wheel and scroll tracking is now handled by individual Number components
