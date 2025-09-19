@@ -6,7 +6,7 @@
 	},
 	{
 		"type": "boucle",
-		"sold": false,
+		"sold": true,
 		"imageNUM": "002"
 	},
 	{
@@ -41,7 +41,7 @@
 	},
 	{
 		"type": "boucle",
-		"sold": false,
+		"sold": true,
 		"imageNUM": "009"
 	},
 	{
