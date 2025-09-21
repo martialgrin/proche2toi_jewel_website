@@ -2,7 +2,7 @@ import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { mapClamped } from "./utils.js";
 
-export default function Header({ videoRef, setFilter, filter }) {
+export default function Header({ videoRef, setFilter, filter, content }) {
 	const [scrollPosition, setScrollPosition] = useState(0);
 	const [isReady, setIsReady] = useState(false);
 
@@ -11,6 +11,9 @@ export default function Header({ videoRef, setFilter, filter }) {
 	const color = "#fff";
 	const logoType = useRef();
     const filterRef = useRef();
+
+    const boucleCount = content.filter(item => item.type === "boucle" && !item.sold).length;
+    const collierCount = content.filter(item => item.type === "collier" && !item.sold).length;
 
 	const handleScroll = (e) => {
 		// Get the carousel container's scroll position instead of window
@@ -145,13 +148,13 @@ export default function Header({ videoRef, setFilter, filter }) {
 					onClick={() => handleFilterChange("collier")} 
 					className={`pill-button ${filter === "collier" ? "active" : ""}`}
 				>
-					Collier
+					Collier ({collierCount})
 				</button>
 				<button 
 					onClick={() => handleFilterChange("boucle")} 
 					className={`pill-button ${filter === "boucle" ? "active" : ""}`}
 				>
-					Boucle
+					Boucle ({boucleCount})
 				</button>
 			</div>
 

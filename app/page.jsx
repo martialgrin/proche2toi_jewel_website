@@ -39,7 +39,7 @@ const videoRef = useRef();
 	return (
 		
 		<div className="h-screen">
-			<Header videoRef={videoRef} setFilter={setFilter} filter={filter} />
+			<Header videoRef={videoRef} setFilter={setFilter} filter={filter} content={content} />
 
 			<div className="video-container" ref={videoRef}>
 				<video
