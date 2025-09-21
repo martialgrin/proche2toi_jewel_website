@@ -148,13 +148,13 @@ export default function Header({ videoRef, setFilter, filter, content }) {
 					onClick={() => handleFilterChange("collier")} 
 					className={`pill-button ${filter === "collier" ? "active" : ""}`}
 				>
-					Collier ({collierCount})
+					Collier&nbsp;({collierCount})
 				</button>
 				<button 
 					onClick={() => handleFilterChange("boucle")} 
 					className={`pill-button ${filter === "boucle" ? "active" : ""}`}
 				>
-					Boucle ({boucleCount})
+					Boucle&nbsp;({boucleCount})
 				</button>
 			</div>
 
