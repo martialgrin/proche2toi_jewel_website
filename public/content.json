@@ -131,7 +131,7 @@
 	},
 	{
 		"type": "boucle",
-		"sold": false,
+		"sold": true,
 		"imageNUM": "027"
 	},
 	{
