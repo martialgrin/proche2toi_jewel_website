@@ -46,7 +46,7 @@
 	},
 	{
 		"type": "boucle",
-		"sold": false,
+		"sold": true,
 		"imageNUM": "010"
 	},
 	{
@@ -66,7 +66,7 @@
 	},
 	{
 		"type": "boucle",
-		"sold": false,
+		"sold": true,
 		"imageNUM": "014"
 	},
 	{
@@ -162,7 +162,7 @@
 	},
 	{
 		"type": "collier",
-		"sold": false,
+		"sold": true,
 		"imageNUM": "104"
 	},
 	{
